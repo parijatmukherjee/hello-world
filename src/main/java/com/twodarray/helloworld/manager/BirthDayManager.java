@@ -4,6 +4,7 @@ import com.twodarray.helloworld.entity.BirthDayConfig;
 import com.twodarray.helloworld.entity.Employee;
 import com.twodarray.helloworld.repository.BirthDayConfigRepo;
 import com.twodarray.helloworld.service.MailContentBuilder;
+import com.twodarray.helloworld.utility.ValueResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,9 @@ public class BirthDayManager
 	
 	@Autowired
 	private MailContentBuilder contentBuilder;
+	
+	@Autowired
+	private ValueResolver valueResolver;
 	
 	private List<BirthDayConfig> config = new ArrayList<>();
 	
@@ -79,7 +83,7 @@ public class BirthDayManager
 					sendBirthDayMail(employee.getEmail().trim(),
 							config.get(0).getFromEmail().trim(),
 							ccAddresses.toArray(new InternetAddress[] {}),
-							employee.getName());
+							employee);
 				}
 			}
 		}
@@ -97,7 +101,7 @@ public class BirthDayManager
 		return (formatter.format(today).equals(formatter.format(birthDay)));
 	}
 	
-	private void sendBirthDayMail(String toEmail, String fromEmail, InternetAddress[] cc, String employee)
+	private void sendBirthDayMail(String toEmail, String fromEmail, InternetAddress[] cc, Employee employee)
 	{
 		try
 		{
@@ -106,14 +110,14 @@ public class BirthDayManager
 				MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
 				messageHelper.setFrom(fromEmail, config.get(0).getFromName());
 				messageHelper.setTo(toEmail);
-				messageHelper.setSubject(config.get(0).getMailSubject()+" "+employee);
+				messageHelper.setSubject(valueResolver.buildString(employee,config.get(0).getMailSubject()));
 				messageHelper.setCc(cc);
 				String content = contentBuilder.build(
-						employee,
+						employee.getName(),
 						config.get(0).getMailImageLink(),
-						config.get(0).getMailHeadLine(),
-						config.get(0).getMailIntroContent(),
-						config.get(0).getMailMainContent(),
+						valueResolver.buildString(employee,config.get(0).getMailHeadLine()),
+						valueResolver.buildString(employee,config.get(0).getMailIntroContent()),
+						valueResolver.buildString(employee,config.get(0).getMailMainContent()),
 						config.get(0).getRegardsFrom(),
 						config.get(0).getCompanyLogoLink());
 				messageHelper.setText(content,true);
