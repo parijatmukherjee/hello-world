@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<table style="background-color: #4E94CF; font-family: Arial; font-size: 14px; padding: 20px; width: 800px;" align="center">
+    <tbody>
+    <tr>
+        <td class="wysiwyg-text-align-center" style="padding: 20px;"><span class="wysiwyg-color-black10"></span><br />
+            <table style="background-color: #ffffff;" border="0" width="700px" cellspacing="0" cellpadding="0" align="center">
+                <tbody>
+                <tr style="padding-top: 20px; text-align: center;">
+                    <td style="padding: 30px;">
+                        <center>
+                            <img border="0" th:src="@{${mailImgSrc}}">
+                        </center>
+                        <div style="text-align: center;"><h2><span th:text="${headLine}"></span></h2></div>
+                        <div style="text-align: left;">Dear <span th:text="${employeeName}"></span>,</div>
+                        <p style="text-align: left;"></p>
+                        <div style="text-align: left;">
+                            <span th:text="${introductionContent}"></span>
+                            <p style="text-align: left;">
+                                <span th:text="${mainContent}"></span>
+                            </p>
+                            <br />
+                            <p style="text-align: left;">Regards,</p>
+                            <p style="text-align: left;"><span th:text="${regardsFrom}"></span></p>
+                        </div>
+                        <center>
+                            <img border="0" th:src="@{${logoSrc}}">
+                        </center></td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
