@@ -9,7 +9,7 @@ hello-world is a free open source configurable spring boot application that enab
 
 # Features
 - Database driven configurations
-- Both Email templates are configurable starting from the mail image, subject line, company logo, mail content and much more.
+- Both Email templates are configurable starting from the image, subject line, company logo, content and much more.
 - Added Freemarker support. Now you can use freemarker expressions to count years of work or age. Supported freemarker expressions are - ${name}, ${email}, ${birthDate}, ${anniversaryDate}, ${age}, ${workYears}.
 
 # Installation Instructions
