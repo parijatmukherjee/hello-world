@@ -1,5 +1,5 @@
 # Getting Started
-hello-world is a free open source configurable spring boot application that enables you to send birthday and anniversary mails to your employees. It automatically checks and triggers mails everyday at 12:00 AM. (JavaDocs will be updated soon)
+hello-world is a free open source configurable spring boot 2 application that enables you to send birthday and anniversary mails to your employees. It automatically checks and triggers mails everyday at 12:00 AM. (JavaDocs will be updated soon)
 
 # Requirements
 - CentOS Linux
