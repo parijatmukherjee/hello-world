@@ -2,10 +2,10 @@
 hello-world is a free open source configurable spring boot application that enables you to send birthday and anniversary mails to your employees.
 
 # Requirements
-CentOS Linux
-MariaDB
-JRE 8
-JavaMail (can also work with your own smtp mail server)
+- CentOS Linux
+- MariaDB
+- JRE 8
+- JavaMail (can also work with your own smtp mail server)
 
 # Features
 - Database driven configurations
