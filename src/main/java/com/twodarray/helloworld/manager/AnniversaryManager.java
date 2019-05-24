@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 @Component
 public class AnniversaryManager
@@ -43,6 +44,8 @@ public class AnniversaryManager
 	private ValueResolver valueResolver;
 	
 	private List<AnniversaryConfig> config = new ArrayList<>();
+	
+	private int configPicker=0;
 	
 	private static String dateFormat="dd-MM";
 	
@@ -79,14 +82,15 @@ public class AnniversaryManager
 			{
 				for (Employee employee : anniversaryToday)
 				{
-					sendAnniversaryMail(employee.getEmail().trim(),config.get(0).getFromEmail().trim(),
+					chooseConfig();
+					sendAnniversaryMail(employee.getEmail().trim(),config.get(configPicker).getFromEmail().trim(),
 							ccAddresses.toArray(new InternetAddress[]{}), employee);
 				}
 			}
 		}
 		catch (Exception e)
 		{
-			logger.error("Error sending mails. - "+e.getMessage());
+			logger.error("Error sending mails - "+e.getMessage());
 		}
 	}
 	
@@ -107,18 +111,18 @@ public class AnniversaryManager
 		{
 			MimeMessagePreparator messagePreparator = mimeMessage -> {
 				MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
-				messageHelper.setFrom(fromEmail, config.get(0).getFromName());
+				messageHelper.setFrom(fromEmail, config.get(configPicker).getFromName());
 				messageHelper.setTo(toEmail);
-				messageHelper.setSubject(valueResolver.buildString(employee,config.get(0).getMailSubject()));
+				messageHelper.setSubject(valueResolver.buildString(employee,config.get(configPicker).getMailSubject()));
 				messageHelper.setCc(cc);
 				String content = mailContentBuilder.build(
 						employee.getName(),
-						config.get(0).getMailImageLink(),
-						valueResolver.buildString(employee,config.get(0).getMailHeadLine()),
-						valueResolver.buildString(employee,config.get(0).getMailIntroContent()),
-						valueResolver.buildString(employee,config.get(0).getMailMainContent()),
-						config.get(0).getRegardsFrom(),
-						config.get(0).getCompanyLogoLink());
+						config.get(configPicker).getMailImageLink(),
+						valueResolver.buildString(employee,config.get(configPicker).getMailHeadLine()),
+						valueResolver.buildString(employee,config.get(configPicker).getMailIntroContent()),
+						valueResolver.buildString(employee,config.get(configPicker).getMailMainContent()),
+						config.get(configPicker).getRegardsFrom(),
+						config.get(configPicker).getCompanyLogoLink());
 				messageHelper.setText(content,true);
 				
 				logger.info("MAIL sent to :"+toEmail+" with content "+content);
@@ -129,5 +133,12 @@ public class AnniversaryManager
 		{
 			logger.error("Anniversary Mail could not be sent for "+toEmail);
 		}
+	}
+	
+	private void chooseConfig()
+	{
+		Random random = new Random();
+		int randomInt = random.nextInt(10 + config.size());
+		configPicker = randomInt % config.size();
 	}
 }
