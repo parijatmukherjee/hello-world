@@ -4,7 +4,7 @@ hello-world is a free open source configurable spring boot 2 application that en
 # Requirements
 - CentOS Linux
 - MariaDB
-- JRE 8
+- JDK 1.8
 - JavaMail (can also work with your own smtp mail server)
 
 # Features
@@ -14,8 +14,10 @@ hello-world is a free open source configurable spring boot 2 application that en
 - Added multiple configuration support. Set a number of mail configurations (specially, the mail content) in the database and hello-world will randomly choose one for sending the mail.
 
 # Installation Instructions
-Will be updated soon...
-
+- Download Source Code
+- Build with Maven - ```$ mvn clean package```
+- Run the jar in background - ```$ nohup java -jar /home/centos/hello-world-0.0.1-SNAPSHOT.jar > /var/log/hello-world/hello-world.log &```
+- Check log - ```tail -f /var/log/hello-world/hello-world.log```
 # Configuration Instructions
 Will be updated soon...
 
