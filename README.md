@@ -99,3 +99,5 @@ VALUES
 Mail Content Example :
 <br />
 ![Mail Example of Hello-world Application - https://github.com/parijatmukherjee/hello-world](https://github.com/parijatmukherjee/hello-world/blob/master/hello-world-application.png)
+
+### ANNIVERSARY_MAIL_CONFIG is same as the above one
