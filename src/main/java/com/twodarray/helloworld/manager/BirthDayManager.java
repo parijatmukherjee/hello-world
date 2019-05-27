@@ -2,6 +2,7 @@ package com.twodarray.helloworld.manager;
 
 import com.twodarray.helloworld.entity.BirthDayConfig;
 import com.twodarray.helloworld.entity.Employee;
+import com.twodarray.helloworld.exception.HelloWorldException;
 import com.twodarray.helloworld.repository.BirthDayConfigRepo;
 import com.twodarray.helloworld.service.MailContentBuilder;
 import com.twodarray.helloworld.utility.ValueResolver;
@@ -60,9 +61,16 @@ public class BirthDayManager
 		
 		for(Employee employee : employeeList)
 		{
-			if(isItBirthday(employee))
+			try
 			{
-				birthDayToday.add(employee);
+				if (isItBirthday(employee))
+				{
+					birthDayToday.add(employee);
+				}
+			}
+			catch (HelloWorldException ex)
+			{
+				logger.error("Error getting  date - "+" EXCEPTION : "+ex.getCode()+" : "+ex.getMessage());
 			}
 		}
 		
@@ -91,9 +99,9 @@ public class BirthDayManager
 				}
 			}
 		}
-		catch (Exception e)
+		catch (Exception ex)
 		{
-			logger.error("Error sending mails. - "+e.getMessage());
+			logger.error("Error sending mails.");
 		}
 	}
 	
@@ -102,6 +110,10 @@ public class BirthDayManager
 		SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
 		Date today = new Date();
 		Date birthDay = employee.getBirthday();
+		if(birthDay == null)
+		{
+			throw new HelloWorldException("Birth date is null", "201");
+		}
 		return (formatter.format(today).equals(formatter.format(birthDay)));
 	}
 	

@@ -17,7 +17,7 @@ public class AnniversaryConfig
 	@Column(name = "CONTENT_HEAD_LINE")
 	private String mailHeadLine;
 	
-	@Column(name = "MAIL_INTO_CONTENT", columnDefinition = "LONGTEXT")
+	@Column(name = "MAIL_INTRO_CONTENT", columnDefinition = "LONGTEXT")
 	private String mailIntroContent;
 	
 	@Column(name = "MAIL_MAIN_CONTENT", columnDefinition = "LONGTEXT")

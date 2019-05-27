@@ -2,6 +2,7 @@ package com.twodarray.helloworld.manager;
 
 import com.twodarray.helloworld.entity.AnniversaryConfig;
 import com.twodarray.helloworld.entity.Employee;
+import com.twodarray.helloworld.exception.HelloWorldException;
 import com.twodarray.helloworld.repository.AnniversaryConfigRepo;
 import com.twodarray.helloworld.service.MailContentBuilder;
 import com.twodarray.helloworld.utility.ValueResolver;
@@ -53,6 +54,7 @@ public class AnniversaryManager
 	//@PostConstruct
 	private void sendAnniversaryMail()
 	{
+		
 		List<Employee> employeeList = employeeRepository.findAll();
 		List<Employee> anniversaryToday = new ArrayList<>();
 		
@@ -60,14 +62,22 @@ public class AnniversaryManager
 		
 		for(Employee employee : employeeList)
 		{
-			if(isItAnniversary(employee))
+			try
 			{
-				anniversaryToday.add(employee);
+				if (isItAnniversary(employee))
+				{
+					anniversaryToday.add(employee);
+				}
+			}
+			catch (HelloWorldException ex)
+			{
+				logger.error("Error getting  date - "+" EXCEPTION : "+ex.getCode()+" : "+ex.getMessage());
 			}
 		}
 		
 		try
 		{
+			
 			String[] ccList = config.get(0).getCcRecipients().split(",");
 			List<InternetAddress> ccAddresses = new ArrayList<>();
 			
@@ -88,9 +98,9 @@ public class AnniversaryManager
 				}
 			}
 		}
-		catch (Exception e)
+		catch (Exception ex)
 		{
-			logger.error("Error sending mails - "+e.getMessage());
+			logger.error("Error sending mails ");
 		}
 	}
 	
@@ -100,6 +110,10 @@ public class AnniversaryManager
 		Date today = new Date();
 		String todayFormatted = formatter.format(today);
 		Date anniversary = employee.getAnniversaryDate();
+		if(anniversary == null)
+		{
+			throw new HelloWorldException("Anniversary date is null", "101");
+		}
 		String formattedAnniversary = formatter.format(anniversary);
 		return todayFormatted.equals(formattedAnniversary);
 	}
