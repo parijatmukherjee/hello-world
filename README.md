@@ -1,4 +1,4 @@
-![Build Status](https://travis-ci.com/parijatmukherjee/hello-world.svg?branch=master)
+[![Build Status](https://dev.azure.com/parijatmukherjee/Open%20Source/_apis/build/status/parijatmukherjee.hello-world?branchName=master)](https://dev.azure.com/parijatmukherjee/Open%20Source/_build/latest?definitionId=3&branchName=master)
 &#160;
 ![GitHub](https://img.shields.io/github/license/parijatmukherjee/hello-world.svg)
 
