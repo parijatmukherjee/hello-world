@@ -137,6 +137,6 @@ To use your own application properties, please customize the above properties an
 To use your customized properties file run the jar like below -
 
 ```
-$ java -jar myproject.jar --spring.config.location=<link to your customized properties file>
+$ java -jar hello-world.jar --spring.config.location=<link to your customized properties file>
 
 ```
