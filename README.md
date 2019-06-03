@@ -1,4 +1,6 @@
 ![Build Status](https://travis-ci.com/parijatmukherjee/hello-world.svg?branch=master)
+&#160;
+![GitHub](https://img.shields.io/github/license/parijatmukherjee/hello-world.svg)
 
 # Getting Started
 hello-world is a free open source configurable spring boot 2 application that enables you to send birthday and anniversary mails to your employees. It automatically checks and triggers mails everyday at 12:00 AM. (JavaDocs will be updated soon)
