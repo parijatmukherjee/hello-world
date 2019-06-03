@@ -101,3 +101,42 @@ Mail Content Example :
 ![Mail Example of Hello-world Application - https://github.com/parijatmukherjee/hello-world](https://github.com/parijatmukherjee/hello-world/blob/master/hello-world-application.png)
 
 ### ANNIVERSARY_MAIL_CONFIG is same as the above one
+
+
+## APPLICATION PROPERTIES
+
+```
+logging.level.org.springframework=INFO
+logging.level.se.seamless.sfo=DEBUG
+logging.file=/var/log/hello-world/hello-world.log
+logging.pattern.file= %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%
+
+
+# Spring DataSource properties
+spring.datasource.url=jdbc:mysql://0.0.0.0:3306/HELLO_WORLD?createDatabaseIfNotExist=true
+spring.datasource.username=refill
+spring.datasource.password=refill
+spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5Dialect
+spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.enable_lazy_load_no_trans=true
+
+
+############# MAIL CONFIGURATION ##############
+#spring.mail.host=smtp.gmail.com
+#spring.mail.port=587
+#spring.mail.username=hr.india@seamless.se
+#spring.mail.password=###########
+#spring.mail.properties.mail.smtp.auth=true
+#spring.mail.properties.mail.smtp.starttls.enable=true
+```
+
+To use your own application properties, please customize the above properties and save it somewhere.
+To use your customized properties file run the jar like below -
+
+```
+$ java -jar myproject.jar --spring.config.location=<link to your customized properties file>
+
+```
