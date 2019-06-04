@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/parijatmukherjee/apiservices.svg?branch=master)](https://travis-ci.com/parijatmukherjee/apiservices)
+[![buddy pipeline](https://app.buddy.works/parijatmukherjee/hello-world/pipelines/pipeline/191047/badge.svg?token=2d933f70ce2a217798a65e510185f6eeefcbf1b171295c7bee2d38d2e5a6bf3a "buddy pipeline")](https://app.buddy.works/parijatmukherjee/hello-world/pipelines/pipeline/191047)
 &#160;
 ![GitHub](https://img.shields.io/github/license/parijatmukherjee/hello-world.svg)
 
