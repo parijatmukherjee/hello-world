@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/parijatmukherjee/hello-world.svg?branch=master)](https://travis-ci.org/parijatmukherjee/hello-world)(https://app.buddy.works/parijatmukherjee/hello-world/pipelines/pipeline/191047)
+[![Build Status](https://travis-ci.org/parijatmukherjee/hello-world.svg?branch=master)](https://travis-ci.org/parijatmukherjee/hello-world)
 &#160;
 ![GitHub](https://img.shields.io/github/license/parijatmukherjee/hello-world.svg)
 
